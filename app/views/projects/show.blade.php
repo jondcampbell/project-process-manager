@@ -6,30 +6,35 @@
 
 <p>{{ link_to_route('projects.index', 'Return to all projects') }}</p>
 
-<table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Title</th>
-				<th>Slug</th>
-				<th>Type</th>
-				<th>Status</th>
-		</tr>
-	</thead>
+<h1>{{{ $project->title }}}</h1>
 
-	<tbody>
-		<tr>
-			<td>{{{ $project->title }}}</td>
-					<td>{{{ $project->slug }}}</td>
-					<td>{{{ $project->type }}}</td>
-					<td>{{{ $project->status }}}</td>
-                    <td>{{ link_to_route('projects.edit', 'Edit', array($project->id), array('class' => 'btn btn-info')) }}</td>
-                    <td>
-                        {{ Form::open(array('method' => 'DELETE', 'route' => array('projects.destroy', $project->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                    </td>
-		</tr>
-	</tbody>
-</table>
+<h4>Slug</h4>
+{{{ $project->slug }}}
+
+<h4>Type</h4>
+{{{ $project->type }}}
+
+<h4>Status</h4>
+{{{ Helpers\Helper::projectStatusToLabel($project->status) }}}
+
+<br />
+
+<h3>Details</h3>
+@foreach ($projectmetum as $projectmeta)
+	{{{ $projectmeta->key }}}: 
+	{{{ $projectmeta->value }}}
+	<br />
+@endforeach
+
+
+				
+{{ link_to_route('projects.edit', 'Edit', array($project->id), array('class' => 'btn btn-info')) }}
+
+<br /><br />
+
+{{ Form::open(array('method' => 'DELETE', 'route' => array('projects.destroy', $project->id))) }}
+    {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+{{ Form::close() }}
+
 
 @stop

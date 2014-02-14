@@ -68,8 +68,10 @@ class ProjectsController extends BaseController {
 	public function show($id)
 	{
 		$project = $this->project->findOrFail($id);
-
-		return View::make('projects.show', compact('project'));
+		$projectmetum = Project::find(1)->projectmetum;
+		return View::make('projects.show')
+			->with('project',$project)
+			->with('projectmetum',$projectmetum);
 	}
 
 	/**

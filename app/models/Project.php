@@ -9,4 +9,11 @@ class Project extends Eloquent {
 		'type' => 'required',
 		'status' => 'required'
 	);
+
+	public function projectmetum(){
+        return $this->hasMany('Projectmetum');
+    }
+
+
+
 }
