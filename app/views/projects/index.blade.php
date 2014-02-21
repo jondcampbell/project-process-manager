@@ -20,7 +20,7 @@
 		<tbody>
 			@foreach ($projects as $project)
 				<tr>
-					<td>{{{ $project->title }}}</td>
+					<td><a href="{{URL::current()}}/{{$project->id}}">{{{ $project->title }}}</a></td>
 					<td>{{{ $project->slug }}}</td>
 					<td>{{{ $project->type }}}</td>
 					<td>{{{ $project->status }}}</td>

@@ -21,9 +21,58 @@ class ProjectsController extends BaseController {
 	 */
 	public function index()
 	{
+
+
+		/*
+		$vars = Request::query('type');
+		echo "type ";
+		print_r($vars);
+
+
+
+		$name = Input::get('name', 'Sally');
+		print_r($name);
+		*/
+		$query_vars = Input::all();
+		//print_r($query_vars);
+
+		/*
+		TODO:this stuff is broken(but should? work)
+		 
+		$projects = new Project;
+
+		if(Input::get('status'))
+		    $projects->where('status', '=', Input::get('status'));
+
+		if(Input::get('type'))
+		    $projects->where('type', '=', Input::get('type'));
+
+		// Keep adding more for every filter you have
+
+		// Don't do this till you are done adding filters.
+		$projects = $projects->get();
+		print_r($projects);
+		*/
+	
+
+
+
+		if(!empty($query_vars['status'])){
+			echo "we have a status";
+		}
+		if(!empty($query_vars['type'])){
+			echo "we have a type";
+		}
+		if(!empty($query_vars['budget'])){
+			echo "we have a budget";
+		}		
+
+		// TODO: This will be replaced by something that has query vars built in
 		$projects = $this->project->all();
 
+
 		return View::make('projects.index', compact('projects'));
+
 	}
 
 	/**
