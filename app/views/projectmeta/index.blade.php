@@ -1,4 +1,4 @@
-@extends('layouts.scaffold')
+@extends('layouts.master')
 
 @section('main')
 
@@ -13,6 +13,8 @@
 				<th>Project_id</th>
 				<th>Key</th>
 				<th>Value</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 
