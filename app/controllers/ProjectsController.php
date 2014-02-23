@@ -23,22 +23,35 @@ class ProjectsController extends BaseController {
 	{
 
 
-		/*
-		$vars = Request::query('type');
-		echo "type ";
-		print_r($vars);
+		// doesnt work, but would be sweet if it did
+		//$projects = Project::ofType(Input::get('type'))->ofStatus(Input::get('status'))->get();
 
 
+	
+		$projects = Project::select('*');
 
-		$name = Input::get('name', 'Sally');
-		print_r($name);
-		*/
-		$query_vars = Input::all();
-		//print_r($query_vars);
+		if(Input::get('type')){$projects = $projects->where('type', '=',Input::get('type'));}
 
-		/*
-		TODO:this stuff is broken(but should? work)
-		 
+		if(Input::get('status')){$projects = $projects->where('status', '=', Input::get('status'));}
+
+		$projects = $projects->get();
+
+		// Dont know why this doesnt work
+		//$allProjectStatuses = Project::select('status')->distinct()->get();
+
+		// Get all project statuses from the projects table
+		$allProjectStatuses = DB::table('projects')->select('status')->distinct()->orderBy('status','ASC')->get();
+
+		// Get all project types from the projects table
+		$allProjectTypes = DB::table('projects')->select('type')->distinct()->orderBy('status','ASC')->get();
+
+		//print_r($allProjectStatuses);
+
+		// This works too
+		//$allProjectStatuses = DB::select('select distinct status from projects');
+		//print_r($allProjectStatuses);
+
+	/*
 		$projects = new Project;
 
 		if(Input::get('status'))
@@ -52,26 +65,13 @@ class ProjectsController extends BaseController {
 		// Don't do this till you are done adding filters.
 		$projects = $projects->get();
 		print_r($projects);
-		*/
-	
+		
+	*/
 
+		// Get all projects
+		//$projects = $this->project->all();
 
-
-		if(!empty($query_vars['status'])){
-			echo "we have a status";
-		}
-		if(!empty($query_vars['type'])){
-			echo "we have a type";
-		}
-		if(!empty($query_vars['budget'])){
-			echo "we have a budget";
-		}		
-
-		// TODO: This will be replaced by something that has query vars built in
-		$projects = $this->project->all();
-
-
-		return View::make('projects.index', compact('projects'));
+		return View::make('projects.index', compact('projects','allProjectStatuses','allProjectTypes'));
 
 	}
 

@@ -6,6 +6,21 @@
 
 <p>{{ link_to_route('projects.create', 'Add new project') }}</p>
 
+
+Filter by Type:
+{{-- Check if we even have types first --}}
+@foreach ($allProjectTypes as $projecttype)
+<a class="btn btn-xs btn-default" href="">{{{ $projecttype->type }}}</a>
+@endforeach
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+Filter by Status:
+{{-- Check if we even have statuses first --}}
+@foreach ($allProjectStatuses as $projectstatuses)
+<a class="btn btn-xs btn-default" href="">{{{ $projectstatuses->status }}}</a>
+@endforeach
+
+<br />
+<br />
 @if ($projects->count())
 	<table class="table table-striped table-bordered">
 		<thead>

@@ -14,6 +14,13 @@ class Project extends Eloquent {
         return $this->hasMany('Projectmetum');
     }
 
+    public function scopeOfType($query,$type){
+    	return $query->whereType($type);
+    }
+
+    public function scopeOfStatus($query,$status){
+    	return $query->whereType($status);
+    }
 
 
 }
