@@ -26,7 +26,8 @@ class ProjectsController extends BaseController {
 		// doesnt work, but would be sweet if it did
 		//$projects = Project::ofType(Input::get('type'))->ofStatus(Input::get('status'))->get();
 
-
+		// Dont know why this doesnt work
+		//$allProjectStatuses = Project::select('status')->distinct()->get();
 	
 		$projects = Project::select('*');
 
@@ -36,14 +37,12 @@ class ProjectsController extends BaseController {
 
 		$projects = $projects->get();
 
-		// Dont know why this doesnt work
-		//$allProjectStatuses = Project::select('status')->distinct()->get();
+		$allProjectTypes = $this->getAllProjectTypes();
 
-		// Get all project statuses from the projects table
-		$allProjectStatuses = DB::table('projects')->select('status')->distinct()->orderBy('status','ASC')->get();
+		$allProjectStatuses = $this->getAllProjectStatuses();		
 
-		// Get all project types from the projects table
-		$allProjectTypes = DB::table('projects')->select('type')->distinct()->orderBy('status','ASC')->get();
+
+
 
 		//print_r($allProjectStatuses);
 
@@ -71,8 +70,62 @@ class ProjectsController extends BaseController {
 		// Get all projects
 		//$projects = $this->project->all();
 
-		return View::make('projects.index', compact('projects','allProjectStatuses','allProjectTypes'));
+		$liststyle = "detailed";
 
+		return View::make('projects.index', compact('projects','allProjectStatuses','allProjectTypes','liststyle'));
+
+	}
+
+	public function stageslist(){
+		$projects = Project::select('*');
+
+		if(Input::get('type')){$projects = $projects->where('type', '=',Input::get('type'));}
+
+		if(Input::get('status')){$projects = $projects->where('status', '=', Input::get('status'));}
+
+		$projects = $projects->get();
+
+		$allProjectTypes = $this->getAllProjectTypes();
+
+		$allProjectStatuses = $this->getAllProjectStatuses();	
+
+
+
+
+		$liststyle = "stages";
+		return View::make('projects.index', compact('projects','allProjectStatuses','allProjectTypes','liststyle'));
+	}
+
+	public function compactlist(){
+		$projects = Project::select('*');
+
+		if(Input::get('type')){$projects = $projects->where('type', '=',Input::get('type'));}
+
+		if(Input::get('status')){$projects = $projects->where('status', '=', Input::get('status'));}
+
+		$projects = $projects->get();
+
+		$allProjectTypes = $this->getAllProjectTypes();
+
+		$allProjectStatuses = $this->getAllProjectStatuses();		
+
+
+
+
+		$liststyle = "compact";
+		return View::make('projects.index', compact('projects','allProjectStatuses','allProjectTypes','liststyle'));
+	}
+
+	// Get all project statuses from the projects table
+	private function getAllProjectStatuses(){
+		$allProjectStatuses = Project::select('status')->distinct()->orderBy('status','ASC')->get();
+		return $allProjectStatuses;
+	}
+
+	// Get all project types from the projects table
+	private function getAllProjectTypes(){
+		$allProjectTypes = Project::select('type')->distinct()->orderBy('status','ASC')->get();
+		return $allProjectTypes;
 	}
 
 	/**

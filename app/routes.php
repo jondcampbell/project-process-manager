@@ -18,6 +18,8 @@ Route::get('/', function()
 
 
 Route::resource('projects', 'ProjectsController');
+Route::get('projects/compactlist', 'ProjectsController@compactlist');
+Route::get('projects/stageslist', 'ProjectsController@stageslist');
 
 Route::resource('projectmeta', 'ProjectmetaController');
 

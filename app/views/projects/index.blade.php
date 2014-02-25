@@ -21,6 +21,13 @@ Filter by Status:
 
 <br />
 <br />
+<strong>List Style:</strong>
+
+<a class="<?php if ($liststyle ==='detailed'){echo "active";}?>" href="{{ action('ProjectsController@index')}}">Detailed</a> | 
+<a class="<?php if ($liststyle ==='stages'){echo "active";}?>" href="{{ action('ProjectsController@stageslist')}}">Stages</a> | 
+<a class="<?php if ($liststyle ==='compact'){echo "active";}?>" href="{{ action('ProjectsController@compactlist')}}">Compact</a>
+<br /><br />
+
 @if ($projects->count())
 	<table class="table table-striped table-bordered">
 		<thead>
