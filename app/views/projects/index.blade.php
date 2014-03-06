@@ -10,13 +10,13 @@
 Filter by Type:
 {{-- Check if we even have types first --}}
 @foreach ($allProjectTypes as $projecttype)
-<a class="btn btn-xs btn-default" href="">{{{ $projecttype->type }}}</a>
+<a class="btn btn-xs btn-default" href="">{{{ Helpers\Helper::projectTypeToLabel($projecttype->type) }}}</a>
 @endforeach
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 Filter by Status:
 {{-- Check if we even have statuses first --}}
 @foreach ($allProjectStatuses as $projectstatuses)
-<a class="btn btn-xs btn-default" href="">{{{ $projectstatuses->status }}}</a>
+<a class="btn btn-xs btn-default" href="">{{{ Helpers\Helper::projectStatusToLabel($projectstatuses->status) }}}</a>
 @endforeach
 
 <br />
@@ -37,7 +37,8 @@ Filter by Status:
 				<th>Type</th>
 				<th>Status</th>
 				<th>Edit</th>
-				<th>Delete</th>				
+				<th>Delete</th>	
+				<th>Update Status</th>			
 			</tr>
 		</thead>
 
@@ -46,13 +47,16 @@ Filter by Status:
 				<tr>
 					<td><a href="{{URL::current()}}/{{$project->id}}">{{{ $project->title }}}</a></td>
 					<td>{{{ $project->slug }}}</td>
-					<td>{{{ $project->type }}}</td>
-					<td>{{{ $project->status }}}</td>
+					<td>{{{ Helpers\Helper::projectTypeToLabel($project->type) }}}</td>
+					<td>{{{ Helpers\Helper::projectStatusToLabel($project->status) }}}</td>
                     <td>{{ link_to_route('projects.edit', 'Edit', array($project->id), array('class' => 'btn btn-info')) }}</td>
                     <td>
                         {{ Form::open(array('method' => 'DELETE', 'route' => array('projects.destroy', $project->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                         {{ Form::close() }}
+                    </td>
+                    <td>
+                    	<a href="" class="btn btn-xs btn-default">+ Status</a>
                     </td>
 				</tr>
 			@endforeach

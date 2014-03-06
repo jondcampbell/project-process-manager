@@ -12,25 +12,35 @@
 	</div>
 	<div class="panel-body">
 		
-		<h4>Slug</h4>
+		<strong>Slug:</strong>
 		{{{ $project->slug }}}
-
-		<h4>Type</h4>
-		{{{ $project->type }}}
-
-		<h4>Status</h4>
-		{{{ Helpers\Helper::projectStatusToLabel($project->status) }}}
-
 		<br />
 
-		<h3>Details</h3>
+		<strong>Type:</strong>
+		{{{ Helpers\Helper::projectTypeToLabel($project->type) }}}
+		<br />		
+
+		<strong>Status:</strong>
+		{{{ Helpers\Helper::projectStatusToLabel($project->status) }}}
+		<br />		
+
+		<!-- Figure out a nice way to get each meta field we want and have pretty labels for them. Maybe I should have labels for meta fields -->
+		<h4>Details</h4>
 		@foreach ($projectmetum as $projectmeta)
-			{{{ $projectmeta->key }}}: 
-			{{{ $projectmeta->value }}}
+		<strong>{{{ $projectmeta->key }}}:</strong> {{{ $projectmeta->value }}}
 			<br />
 		@endforeach
 
+		<hr />
 
+		<h4>Project Status Feed</h4>
+		Show all statuses for the project, newest at the top<br /><br />
+		<a href="" class="btn btn-xs btn-default">+ Status</a>
+
+		<br /><br />
+
+
+		<hr />
 						
 		{{ link_to_route('projects.edit', 'Edit', array($project->id), array('class' => 'btn btn-info')) }}
 

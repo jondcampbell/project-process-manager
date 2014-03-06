@@ -9,7 +9,8 @@ class DashboardController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		
+		//TODO: Get a count of the total number of projects and pass that information to the dashboard
 	}
 
 	/**

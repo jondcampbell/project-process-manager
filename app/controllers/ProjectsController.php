@@ -171,6 +171,13 @@ class ProjectsController extends BaseController {
 	{
 		$project = $this->project->findOrFail($id);
 		$projectmetum = Project::find(1)->projectmetum;
+
+		// TODO: Add in getting the project status updates for this project
+		
+		// TODO: Add in getting the project process order for this project
+		
+		// TODO: Figure out a way to display them together in the single project template
+
 		return View::make('projects.show')
 			->with('project',$project)
 			->with('projectmetum',$projectmetum);
