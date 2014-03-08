@@ -10,10 +10,16 @@ class Helper {
     public static function projectStatusToLabel($statusint)
     {
     	switch($statusint):
+        case 0:
+            return 'Not Started';
+            break;
     	case 1:
     		return 'Active';
     		break;
-    	case 2:
+        case 2:
+            return 'On Hold';
+            break;            
+    	case 10:
         	return 'Completed';
         	break;
         endswitch;
@@ -44,8 +50,34 @@ class Helper {
             return 'Evolutionary';
             break;
         
-        case 100:
-            return 'Completed';
+        case 20:
+            return 'Non-Billable Client';
+            break;
+        case 21:
+            return 'Non-Billable Partner';
+            break;
+        case 22:
+            return 'Non-Billable Charity';
+            break;
+        endswitch;
+    }    
+
+    /**
+     * 
+     * Convert a project type integer into a string label that actually makes sense to the user.
+     * Types 1-9 are normal
+     * Types 10-19 are special
+     * 
+     */
+
+    public static function stageTypeToLabel($typeint)
+    {
+        switch($typeint):
+        case 10:
+            return 'Dev';
+            break;
+        case 20:
+            return 'Financial';
             break;
         endswitch;
     }    

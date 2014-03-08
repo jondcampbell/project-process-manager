@@ -11,6 +11,11 @@
         </li>
 
         <li>
+            {{ Form::label('type', 'Type:') }}
+            {{ Form::text('type') }}
+        </li>        
+
+        <li>
             {{ Form::label('description', 'Description:') }}
             {{ Form::textarea('description') }}
         </li>

@@ -14,7 +14,9 @@
 				<li><a class="" href="{{url('/')}}">Dashboard</a></li>
 				<li><a class="" href="{{url('/projects')}}">Projects</a></li>
 				<li><a class="" href="{{url('/projectmeta')}}">Project Meta</a></li>
+				<li><a class="" href="{{url('/stages')}}">Stages</a></li>
 				<li><a class="" href="{{url('/processes')}}">Processes</a></li>
+				<li><a class="" href="{{url('/statusupdates')}}">Status Updates</a></li>				
 			</ul>  
 		</div><!--/.nav-collapse -->
 	</div>

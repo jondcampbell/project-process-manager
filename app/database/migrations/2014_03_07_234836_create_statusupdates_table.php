@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateStagesTable extends Migration {
+class CreateStatusupdatesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,12 @@ class CreateStagesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('stages', function(Blueprint $table) {
+		Schema::create('statusupdates', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name');
 			$table->integer('type');
-			$table->text('description');
-			$table->integer('order');
-			$table->integer('process_id');
-			$table->integer('financial_stage_id');
-			$table->integer('default_stage_length');
+			$table->integer('stage_id');
+			$table->integer('user');
+			$table->integer('status');
 			$table->timestamps();
 		});
 	}
@@ -33,7 +30,7 @@ class CreateStagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('stages');
+		Schema::drop('statusupdates');
 	}
 
 }

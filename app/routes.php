@@ -26,3 +26,5 @@ Route::resource('projectmeta', 'ProjectmetaController');
 Route::resource('processes', 'ProcessesController');
 
 Route::resource('stages', 'StagesController');
+
+Route::resource('statusupdates', 'StatusupdatesController');
